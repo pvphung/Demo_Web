@@ -1,4 +1,4 @@
-from LoginPagesCustomKeywords import LoginPagesCustomKeywords
+from CommonCustomKeywords import CommonCustomKeywords
 from WaitTimeHandler import WaitTimeHandler
 from SeleniumLibrary import SeleniumLibrary
 
@@ -13,4 +13,7 @@ class WebHandling(SeleniumLibrary):
 
     def __init__(self):
         SeleniumLibrary.__init__(self, timeout=90)
-        self.add_library_components([LoginPagesCustomKeywords(self), WaitTimeHandler(self)])
+        self.add_library_components([CommonCustomKeywords(self),
+                                     WaitTimeHandler(self),
+                                     ])
+

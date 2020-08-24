@@ -17,9 +17,9 @@ User click login button
     Wait For Login
 
 Verify login successfully
-    ${title} =  get title
-    ${title_2} =  get title handler  ${LOGIN_SUCCESS_LABLE}
-    log   ${title_2}
-    Log   ${title}
+    ${title_1} =  get title
+    ${title_2} =  get text element  ${LOGIN_SUCCESS_LABLE}
+    log   ${title_1}
+    Log   ${title_2}
     Title Should Be  Swag Labs
-    Should Be Equal  ${login_success}   ${title_2}
+    Should Be Equal  ${tLogin_success}   ${title_2}

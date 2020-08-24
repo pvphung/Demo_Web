@@ -18,7 +18,7 @@ except ImportError as imp_err:
     raise
 
 
-class LoginPagesCustomKeywords(LibraryComponent):
+class CommonCustomKeywords(LibraryComponent):
 
     def __init__(self, ctx):
         LibraryComponent.__init__(self, ctx)
@@ -26,10 +26,26 @@ class LoginPagesCustomKeywords(LibraryComponent):
         self.browser_management = BrowserManagementKeywords(ctx)
         self.windows_management = window.WindowKeywords(ctx)
 
+    def get_text_element(self, locator):
+        text = self.find_element(locator).text
+        return text
+
+    def get_text_elements(self, locator):
+        list_text = [el.text for el in self.find_elements(locator)]
+        return list_text
+
     @keyword
-    def get_title_handler(self, locator):
-        """
-            get title
-        """
-        element = self.find_element(locator).text
-        return element
+    def get_text_element(self, locator):
+        text = self.find_element(locator).text
+        return text
+
+    @keyword
+    def get_text_elements(self, locator):
+        list_text = [el.text for el in self.find_elements(locator)]
+        return list_text
+
+    @keyword
+    def get_all_product(self, locator):
+        lProduct = self.get_text_elements(locator)
+        return lProduct
+
