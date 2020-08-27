@@ -53,9 +53,26 @@ class CommonCustomKeywords(LibraryComponent):
         :return: object element
         """
         loc_type = locator.split(':')[0].lower()
-        loc = ''+':'.join(locator.split(':')[1:])
-        el = self.driver.find_element(by=loc_type, value="("+format(loc)+")["+format(index)+"]")
+        loc = '' + ':'.join(locator.split(':')[1:])
+        el = self.driver.find_element(by=loc_type, value="(" + format(loc) + ")[" + format(index) + "]")
         return el
+
+    # keyword Action _______________________________________________________________________
+
+    @keyword
+    def click_element_by_contain(self, contain, index=None):
+        if index is None:
+            self.driver.find_element(by=By.XPATH, value="(//*[contains(text(),  '" + format(contain) + "')])").click()
+        else:
+            self.driver.find_element(by=By.XPATH, value="(//*[contains(text(),  '" + format(contain) + "')])["+format(index)+"]").click()
+
+    @keyword
+    def click_element_enh(self, locator, index=None):
+        self.find_element_enh(locator, index=index).click()
+
+    # End keyword Action _______________________________________________________________________
+
+    # keyword GET _________________________________________________________________________________
 
     @keyword
     def get_text_element(self, locator, index=None):
@@ -67,9 +84,7 @@ class CommonCustomKeywords(LibraryComponent):
 
     # @keyword
     # def test_locator(self, locator, index=None):
-    #     text = self.driver.find_element(by='xpath', value="(//div/div[@class='inventory_item_desc'])[2]").text
-    #     text = self.find_element_enh(locator, index=index).text
-    #     return text
+    #     self.find_element_enh(locator, index).click()
 
     @keyword
     def get_text_elements(self, locator):
@@ -88,3 +103,5 @@ class CommonCustomKeywords(LibraryComponent):
         if index:
             return index
         return self.info('Element {0) is not exited'.format(product_name))
+
+    # End keyword GET _________________________________________________________________________________
