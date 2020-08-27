@@ -94,6 +94,9 @@ class CommonCustomKeywords(LibraryComponent):
     @keyword
     def get_all_product(self, locator):
         lProduct = self.get_text_elements(locator)
+        if len(lProduct) == 1:
+            self.info(lProduct[0])
+            return lProduct[0]
         self.info(lProduct)
         return lProduct
 
