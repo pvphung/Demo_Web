@@ -64,7 +64,8 @@ class CommonCustomKeywords(LibraryComponent):
         if index is None:
             self.driver.find_element(by=By.XPATH, value="(//*[contains(text(),  '" + format(contain) + "')])").click()
         else:
-            self.driver.find_element(by=By.XPATH, value="(//*[contains(text(),  '" + format(contain) + "')])["+format(index)+"]").click()
+            self.driver.find_element(by=By.XPATH, value="(//*[contains(text(),  '" + format(contain) + "')])[" + format(
+                index) + "]").click()
 
     @keyword
     def click_element_enh(self, locator, index=None):
@@ -108,3 +109,5 @@ class CommonCustomKeywords(LibraryComponent):
         return self.info('Element {0) is not exited'.format(product_name))
 
     # End keyword GET _________________________________________________________________________________
+
+    # Keyword verify

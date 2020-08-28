@@ -17,7 +17,7 @@ User Remove '${product_item}' On '${name_page}' Page
     ${products} =  run keyword if  ${data_type} == str  create list  ${product_item}  ELSE   set variable   ${product_item}
     :FOR  ${item}  IN  @{products}
      \   Log  ${item}
-     \   ${index} =  run keyword if   ${name_page} != Product Detail   get index product by name  ${ALL_ITEM_NAME_TEXT}  ${item}
+     \   ${index} =  run keyword if   '${name_page}' != 'Product Detail'   get index product by name  ${ALL_ITEM_NAME_TEXT}  ${item}
      \   run keyword if  ${index} != ${None}   click element enh    ${REMOVE_BUTTON}     ${index}   ELSE   click element    ${REMOVE_BUTTON}
      \   sleep  2
 
@@ -64,6 +64,7 @@ Verify that product items have been added to cart must be displayed into shoppin
     should be equal  ${list_product_items}   ${all_products_in_cart}
 
 Verify That '${product_item}' Deleted From '${name_page}' Successfully
+    ${data_type}  Evaluate     type($product_item).__name__
+    ${products} =  run keyword if  ${data_type} == str  create list  ${product_item}   ELSE   set variable   ${product_item}
     ${products_in_cart} =   get all product  ${ALL_ITEM_NAME_TEXT}
-    :FOR  ${item}  IN  @{products_in_cart}
-    \   Log  ${item}
+    list should not contain sub list    ${products_in_cart}   ${products}
