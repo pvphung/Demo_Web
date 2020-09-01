@@ -65,6 +65,6 @@ Verify that product items have been added to cart must be displayed into shoppin
 
 Verify That '${product_item}' Deleted From '${name_page}' Successfully
     ${data_type}  Evaluate     type($product_item).__name__
-    ${products} =  run keyword if  ${data_type} == str  create list  ${product_item}   ELSE   set variable   ${product_item}
+    ${products} =  run keyword if  ${data_type} == str  create list  ${product_item}  ELSE   set variable   ${product_item}
     ${products_in_cart} =   get all product  ${ALL_ITEM_NAME_TEXT}
     list should not contain sub list    ${products_in_cart}   ${products}

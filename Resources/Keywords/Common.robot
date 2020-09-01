@@ -1,7 +1,7 @@
 *** Settings ***
 # Library
 Library  WebHandling
-
+#Library  Collections
 # Variables
 Variables  Resources/Data_test/Log_in_page_data.py
 

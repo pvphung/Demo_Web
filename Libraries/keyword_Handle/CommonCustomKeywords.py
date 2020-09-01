@@ -1,3 +1,5 @@
+from robot.utils import unic, is_truthy, is_list_like, type_name
+
 try:
     from SeleniumLibrary.base import keyword, LibraryComponent
     from SeleniumLibrary.keywords import BrowserManagementKeywords
@@ -111,3 +113,40 @@ class CommonCustomKeywords(LibraryComponent):
     # End keyword GET _________________________________________________________________________________
 
     # Keyword verify
+    @keyword
+    def list_should_not_contain_sub_list(self, list1, list2, msg=None, values=True):
+        """Fails if one of the elements in ``list2`` are found in ``list1``.
+
+        The order of values and the number of values are not taken into
+        account.
+
+        See `Lists Should Be Equal` for more information about configuring
+        the error message with ``msg`` and ``values`` arguments.
+        """
+        self._validate_lists(list1, list2)
+        diffs = ', '.join(unic(item) for item in list2 if item in list1)
+        default = 'Following values were found from first list: ' + diffs
+        _verify_condition(not diffs, default, msg, values)
+
+    # END Keyword verify_____________________________________________________________________
+
+    # private Func _____________________________________________________________________
+
+    def _validate_list(self, list_, position=1):
+        if not is_list_like(list_):
+            raise TypeError("Expected argument %d to be a list or list-like, "
+                            "got %s instead." % (position, type_name(list_)))
+
+    def _validate_lists(self, *lists):
+        for index, item in enumerate(lists, start=1):
+            self._validate_list(item, index)
+
+
+def _verify_condition(condition, default_msg, msg, values=False):
+    if condition:
+        return
+    if not msg:
+        msg = default_msg
+    elif is_truthy(values) and str(values).upper() != 'NO VALUES':
+        msg += '\n' + default_msg
+    raise AssertionError(msg)

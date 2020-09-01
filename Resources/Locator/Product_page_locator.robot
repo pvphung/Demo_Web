@@ -7,7 +7,7 @@ ${ADD_TO_CART_BUTTON}               xpath://div[@class='pricebar']/button
 ${REMOVE_BUTTON}                    xpath://button[contains(@class, 'btn_secondary')]
 
 ${SHOPPING_CART_ICON}               id:shopping_cart_container
-
+${CONTINUE_SHOPPING_BUTTON}         link text: Continue Shopping
 
 
 ${DESC_ITEM_NAME_DETAIL_TEXT}       xpath://div[@class='inventory_details_desc']

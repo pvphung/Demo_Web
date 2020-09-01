@@ -33,14 +33,20 @@ TC_03
 
     User Add Product Items To Cart  ${lProduct_items}
     User Click On Shopping Cart Icon
-    User Remove 'Sauce Labs Backpack' On 'Shopping Cart' Page
-    Verify That 'Sauce Labs Backpack' Deleted From 'Shopping Cart' Successfully
+    User Remove '${lProduct_items}' On 'Shopping Cart' Page
+    Verify That '${lProduct_items}' Deleted From 'Shopping Cart' Successfully
 
 TC_04
     [Documentation]  Verify that shopping cart is empty when user remove product items into product items page
     [Tags]  REG4
     [Setup]  Open Browser And Login To Application
     [Teardown]  Close All Browser
+
+    User Add Product Items To Cart  ${lProduct_items}
+    User Click On Shopping Cart Icon
+    Verify that product items have been added to cart must be displayed into shopping cart   ${lProduct_items}
+    User Click On 'Continue Shopping'
+    User Remove '${lProduct_items}' On 'Product Items' Page
 
 TC_05
     [Documentation]  Verify that shopping cart is empty when user remove product items into product details page
