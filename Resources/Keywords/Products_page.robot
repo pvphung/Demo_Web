@@ -18,7 +18,8 @@ User Remove '${product_item}' On '${name_page}' Page
     :FOR  ${item}  IN  @{products}
      \   Log  ${item}
      \   ${index} =  run keyword if   '${name_page}' != 'Product Detail'   get index product by name  ${ALL_ITEM_NAME_TEXT}  ${item}
-     \   run keyword if  ${index} != ${None}   click element enh    ${REMOVE_BUTTON}     ${index}   ELSE   click element    ${REMOVE_BUTTON}
+     \   run keyword if  ${index} != ${None}  AND  '${name_page}' != 'Product Items'  click element enh    ${REMOVE_BUTTON}     ${index}   ELSE   click element    ${REMOVE_BUTTON}
+     \   run keyword if  '${name_page}' == 'Product Items'   click element by child    loc_parent=xpath://div[@class='pricebar']  loc_child=${PRODUCT_ITEM_REMOVE}  index_parent=${index}
      \   sleep  2
 
 

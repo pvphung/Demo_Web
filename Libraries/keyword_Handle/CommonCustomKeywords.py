@@ -59,6 +59,22 @@ class CommonCustomKeywords(LibraryComponent):
         el = self.driver.find_element(by=loc_type, value="(" + format(loc) + ")[" + format(index) + "]")
         return el
 
+    def find_element_by_child(self, locator, index=None, locator_child=None):
+        """
+        find element child by parent node
+        :param locator: locator parent node
+        :param index: index parent node
+        :param locator_child: locator child node
+        :return:
+        """
+        loc_type = locator_child.split(':')[0].lower()
+        loc = '' + ':'.join(locator_child.split(':')[1:])
+        if index is None:
+            el = self.find_element_enh(locator, index).find_element(by=loc_type, value="(" + format(loc) + ")")
+        else:
+            el = self.find_element(locator).find_element(by=loc_type, value="(" + format(loc) + ")")
+        return el
+
     # keyword Action _______________________________________________________________________
 
     @keyword
@@ -73,6 +89,10 @@ class CommonCustomKeywords(LibraryComponent):
     def click_element_enh(self, locator, index=None):
         self.find_element_enh(locator, index=index).click()
 
+    @keyword
+    def click_element_by_child(self, loc_parent, loc_child, index_parent=None):
+        self.find_element_by_child(loc_parent, index_parent, loc_child).click()
+
     # End keyword Action _______________________________________________________________________
 
     # keyword GET _________________________________________________________________________________
@@ -85,9 +105,13 @@ class CommonCustomKeywords(LibraryComponent):
             text = self.find_element_enh(locator, index=index).text
         return text
 
-    # @keyword
-    # def test_locator(self, locator, index=None):
-    #     self.find_element_enh(locator, index).click()
+    @keyword
+    def test_locator(self, locator, index=None, locator_child=None):
+
+        loc_type = locator_child.split(':')[0].lower()
+        loc = '' + ':'.join(locator_child.split(':')[1:])
+        el = self.find_element_enh(locator, index).find_element(by=loc_type, value="(" + format(loc) + ")")
+        return el
 
     @keyword
     def get_text_elements(self, locator):

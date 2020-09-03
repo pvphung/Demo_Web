@@ -55,5 +55,15 @@ TC_05
     [Teardown]  Close All Browser
 
 
+Test Debug
+    [Documentation]  Verify that shopping cart is empty when user remove product items into product details page
+    [Tags]  REG5
+    [Setup]  Open Browser And Login To Application
+    [Teardown]  Close All Browser
+
+    sleep  3
+    test locator    xpath://div[@class='pricebar']   2   //button[contains(@class,'btn_secondary btn_inventory')]
+    sleep  4
+
 *** Keywords ***
 
