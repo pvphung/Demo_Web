@@ -47,6 +47,8 @@ TC_04
     Verify that product items have been added to cart must be displayed into shopping cart   ${lProduct_items}
     User Click On 'Continue Shopping'
     User Remove '${lProduct_items}' On 'Product Items' Page
+    User Click On Shopping Cart Icon
+    Verify That '${lProduct_items}' Deleted From 'Shopping Cart' Successfully
 
 TC_05
     [Documentation]  Verify that shopping cart is empty when user remove product items into product details page
