@@ -17,7 +17,7 @@ Open Browser And Login To Application
     User input user name   ${user}
     User input password    ${password}
     User click login button
-    Verify login successfully
+    Verify 'Products' Header Is Displayed
 
 Close All Browser
     Close Browser

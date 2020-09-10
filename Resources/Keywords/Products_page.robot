@@ -5,7 +5,7 @@ Resource  Resources/Locator/Product_page_locator.robot
 
 *** Keywords ***
 #Keyword Action
-User Click On '${item}'
+User Click On '${item}' ${type_item}
     click element by contain  ${item}
 
 User Click On Shopping Cart Icon
@@ -17,7 +17,7 @@ User Remove '${product_item}' On '${name_page}' Page
     ${products} =  run keyword if  ${data_type} == str  create list  ${product_item}  ELSE   set variable   ${product_item}
     :FOR  ${item}  IN  @{products}
      \   Log  ${item}
-     \   ${index} =  run keyword if   '${name_page}' != 'Product Detail'   get index product by name  ${ALL_ITEM_NAME_TEXT}  ${item}
+     \   ${index} =  run keyword if   '${name_page}' != 'Product Details'   get index product by name  ${ALL_ITEM_NAME_TEXT}  ${item}
      \   run keyword if   ${index} == ${None}  click element    ${REMOVE_BUTTON}   ELSE IF   '${name_page}' == 'Product Items'   click element by child    loc_parent=xpath://div[@class='pricebar']  loc_child=${PRODUCT_ITEM_REMOVE}  index_parent=${index}   ELSE      click element enh    ${REMOVE_BUTTON}     ${index}
      \   sleep  2
 

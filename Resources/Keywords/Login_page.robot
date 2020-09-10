@@ -16,10 +16,7 @@ User click login button
     Click Button  ${LOGIN_BUTTON}
     Wait For Login
 
-Verify login successfully
-    ${title_1} =  get title
-    ${title_2} =  get text element  ${LOGIN_SUCCESS_LABLE}
-    log   ${title_1}
-    Log   ${title_2}
-    Title Should Be  Swag Labs
-    Should Be Equal  ${tLogin_success}   ${title_2}
+Verify '${page_title}' Header Is Displayed
+    ${header} =  run keyword if  '${page_title}' != 'Products'  get text element  ${SUB_HEADER_LABLE}  ELSE  get text element  ${LOGIN_SUCCESS_LABLE}
+    Log   ${header}
+    Should Be Equal  ${page_title}   ${header}
